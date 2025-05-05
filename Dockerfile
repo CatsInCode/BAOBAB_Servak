@@ -1,5 +1,5 @@
 # Сначала билдим проект
-FROM gradle:8.2.1-jdk17 AS builder
+FROM gradle:8.4-jdk17 AS builder
 COPY . /app
 WORKDIR /app
 RUN gradle installDist
