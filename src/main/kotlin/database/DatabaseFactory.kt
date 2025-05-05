@@ -1,4 +1,3 @@
-
 package com.example.database
 
 import com.example.database.tokens.Tokens
@@ -9,12 +8,17 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
     fun init() {
+        val dbUrl = System.getenv("DB_URL")
+        val dbUser = System.getenv("DB_USER")
+        val dbPassword = System.getenv("DB_PASSWORD")
+
         Database.connect(
-            url = "jdbc:postgresql://localhost:5432/tst",
+            url = dbUrl,
             driver = "org.postgresql.Driver",
-            user = "postgres",
-            password = "1qazxswedc"
+            user = dbUser,
+            password = dbPassword
         )
+
         transaction {
             SchemaUtils.create(Users, Tokens)
         }
