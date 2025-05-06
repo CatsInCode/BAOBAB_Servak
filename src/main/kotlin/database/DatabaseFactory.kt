@@ -1,3 +1,4 @@
+
 package com.example.database
 
 import com.example.database.tokens.Tokens
@@ -8,19 +9,20 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 object DatabaseFactory {
     fun init() {
-        val dbUrl = System.getenv("DB_URL")
-        val dbUser = System.getenv("DB_USER")
-        val dbPassword = System.getenv("DB_PASSWORD")
+        val host = "dpg-d0ckucodl3ps73ea4eug-a.frankfurt-postgres.render.com"
+        val dbName = "db_crm_tst"
+        val user = "admin"
+        val password = "INIXJmdHrVqeXQb2tYlnYM83HxbNYDGe"
 
         Database.connect(
-            url = dbUrl,
+            url = "jdbc:postgresql://$host:5432/$dbName?sslmode=require",
             driver = "org.postgresql.Driver",
-            user = dbUser,
-            password = dbPassword
+            user = user,
+            password = password
         )
 
         transaction {
-            SchemaUtils.create(Users, Tokens)
+            SchemaUtils.createMissingTablesAndColumns(Users, Tokens)
         }
     }
 }
