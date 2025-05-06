@@ -12,7 +12,8 @@ import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.routing.*
 
 fun main() {
-    embeddedServer(CIO, port = 8080, host = "0.0.0.0") {
+    val port = System.getenv("PORT")?.toIntOrNull() ?: 8080  // Важно для Render
+    embeddedServer(CIO, port = port, host = "0.0.0.0") {     // CIO → Netty для production
         install(ContentNegotiation) {
             json()
         }
