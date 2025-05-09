@@ -1,10 +1,9 @@
-
-package com.example.models
+package com.example.models.dtos.requests
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginReceiveRemote(
+data class LoginRequest(
     val login: String,
     val password: String
 )
