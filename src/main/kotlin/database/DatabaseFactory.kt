@@ -1,7 +1,5 @@
-
 package com.example.database
 
-import com.example.database.tokens.Tokens
 import com.example.database.users.Users
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -22,7 +20,7 @@ object DatabaseFactory {
         )
 
         transaction {
-            SchemaUtils.createMissingTablesAndColumns(Users, Tokens)
+            SchemaUtils.createMissingTablesAndColumns(Users)
         }
     }
 }
